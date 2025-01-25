@@ -1,17 +1,18 @@
-from contextlib import asynccontextmanager
+import asyncio
 import json
 import os
+import platform
+from contextlib import asynccontextmanager
+from typing import Any, Dict, List, Optional
+
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
-from fastapi import FastAPI, HTTPException, Query, Request
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, Query
 from psycopg_pool import AsyncConnectionPool
-from typing import List, Optional, Dict, Any
-import asyncio
-import platform
+from pydantic import BaseModel
+from sentence_transformers import SentenceTransformer
 
 if platform.system() == "Windows":
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
